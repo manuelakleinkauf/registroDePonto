@@ -1,0 +1,44 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color:#2e377f;
+    background-color: #F3F3F3;
+}
+div{
+    margin-top: 15vh;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto; 
+}
+.img{
+    height: 8vh;
+    width: 5vw;
+}
+h1{
+    font-size: 18px;
+}
+#saudacao{
+    margin-top: 1vh;
+    font-size: 15px;
+    margin-bottom: 1vh;
+}
+#data{
+    margin-top: 1vh;
+    font-size: 15px;
+    margin-bottom: 1vh;
+}
+#hora{
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 3vh;
+}
+
+
+
+@media only screen and (max-width: 650px){
+    .img{
+        width: 16vw;
+        height: 9vh;
+    }
+}

@@ -1,0 +1,81 @@
+<link rel="stylesheet" href="/css/main.css">
+
+    <div>
+       <img class="img" src="/imagens/logo.png">
+        <p id="saudacao">{{this.saudacao}}</p>
+        <h1>Administrador</h1>
+        <p name="data" id="data">{{this.dataAtual}}</p>
+        <p name="hora" id="hora">{{this.horaAtual}}</p>
+        <p name="latitude" id="latitude"></p>
+        <p name="longitude" id="longitude"></p>
+        <form action="/camera" method="POST">
+             <input name="latitude" type="text" id="inputLatitude">
+             <input name="longitude" type="text" id="inputLongitude">
+             <input name="link" id="inputLink">
+             <div class="divBtn">
+                <input class="btn" id="btn" type="submit" name="enviar" value="Enviar dados"/>
+            </div>
+            <a href="/relatorio">Ver relatório</a>
+        </form>
+        
+    
+        <video autoplay></video>
+        <canvas></canvas>
+        <button>Tirar foto</button>
+        </div>
+    
+    <script>
+        
+
+       //foto
+        var video = document.querySelector('video')
+        navigator.mediaDevices.getUserMedia({video:true})
+        .then(stream =>{
+            video.srcObject = stream
+            video.play()
+        })
+        .catch(error => {
+            console.log(error)
+        })
+
+        document.querySelector('button').addEventListener('click',( ) => {
+            var canvas = document.querySelector('canvas')
+            canvas.height = video.videoHeight
+            canvas.width = video.videoWidth
+            var context = canvas.getContext('2d')
+            context.drawImage(video, 0, 0)
+            var link = document.createElement('a')
+            link.download = 'foto.png'
+            link.href = canvas.toDataURL()
+            link.textContent = 'Baixe a imagem'
+            document.body.appendChild(link)
+            console.log(link)
+            
+            const inputLink = document.querySelector("#inputLink")
+            inputLink.value = link.download
+        })
+
+     const getPosition = position =>{
+            const dados = {
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude
+            }
+            //console.log(dados)
+
+             
+            const inputLongitude = document.querySelector("#inputLongitude")
+            inputLongitude.value = "Longitude: "+position.coords.longitude
+            const inputLatitude = document.querySelector("#inputLatitude")
+            inputLatitude.value= "Latitude: "+position.coords.latitude
+        }
+       
+        navigator.geolocation.getCurrentPosition(getPosition)
+    
+        
+        
+
+</script>
+
+
+
+

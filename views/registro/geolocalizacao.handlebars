@@ -1,0 +1,38 @@
+<link rel="stylesheet" href="/css/main.css">
+
+    <div>
+       <img class="img" src="/imagens/logo.png">
+        <p id="saudacao">{{this.saudacao}}</p>
+        <h1>Administrador</h1>
+        <p name="data" id="data">{{this.dataAtual}}</p>
+        <p name="hora" id="hora">{{this.horaAtual}}</p>
+       <p name="latitude" id="latitude"></p>
+       <p name="longitude" id="longitude"></p>
+    
+        <a href="/camera" id="confirmar">Confirmar</a>
+        </div>
+    </div>
+<script >
+   
+
+     const getPosition = position =>{
+            const dados = {
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude
+            }
+            //console.log(dados)
+
+             const latitude = document.querySelector("#latitude")
+            latitude.innerHTML= "Latitude: "+position.coords.latitude
+            const longitude = document.querySelector("#longitude")
+            longitude.innerHTML = "Longitude: "+position.coords.longitude
+            const latitudeSave = position.coords.latitude
+            const longitudeSave = position.coords.longitude
+        }
+       
+        
+        navigator.geolocation.getCurrentPosition(getPosition)
+
+        
+
+</script>
